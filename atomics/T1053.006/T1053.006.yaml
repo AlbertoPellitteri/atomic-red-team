@@ -26,6 +26,7 @@ atomic_tests:
       type: string
       default: art-timer.timer
   executor:
+    elevation_required: true
     command: |
       echo "[Unit]" > #{path_to_systemd_service}
       echo "Description=Atomic Red Team Systemd Timer Service" >> #{path_to_systemd_service}

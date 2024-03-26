@@ -25,14 +25,7 @@ atomic_tests:
   - linux
   executor:
     command: |
-      mkdir -p /var/spool/mail/copy
-      for file in /var/spool/mail/*; do
-        if [ "$(basename "$file")" != "copy" ]
-        then
-          cp -R "$file" /var/spool/mail/copy/
-        fi
-      done
-      rm -rf /var/spool/mail/copy/*
+      mkdir -p /var/spool/mail/copy && for file in /var/spool/mail/*; do if [ "$(basename "$file")" != "copy" ]; then cp -R "$file" /var/spool/mail/copy/; fi; done && rm -rf /var/spool/mail/copy/*
     cleanup_command: |
       rm -rf /var/spool/mail/copy
     name: bash
@@ -78,16 +71,7 @@ atomic_tests:
   - linux
   executor:
     command: |
-      mkdir -p /var/spool/mail/copy
-      for file in /var/spool/mail/*; do
-        if [ "$(basename "$file")" != "copy" ]
-        then
-          cp -R "$file" /var/spool/mail/copy/
-          if [ -f "/var/spool/mail/copy/$(basename "$file")" ]; then
-            echo "Modification for Atomic Red Test" >> "/var/spool/mail/copy/$(basename "$file")"
-          fi
-        fi
-      done
+      mkdir -p /var/spool/mail/copy; for file in /var/spool/mail/*; do if [ "$(basename "$file")" != "copy" ]; then cp -R "$file" /var/spool/mail/copy/; if [ -f "/var/spool/mail/copy/$(basename "$file")" ]; then echo "Modification for Atomic Red Test" >> "/var/spool/mail/copy/$(basename "$file")"; fi; fi; done
     cleanup_command: |
       rm -rf /var/spool/mail/copy
     name: bash

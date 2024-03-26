@@ -219,6 +219,12 @@ atomic_tests:
       if [ -x "$(command -v curl)" ]; then echo "curl is installed"; else echo "curl is NOT installed"; exit 1; fi
     get_prereq_command: |
       which apt && apt update && apt install -y curl || which pkg && pkg update && pkg install -y curl
+  - description: |
+      Check if output  is installed on the machine.
+    prereq_command: |
+      if [ -x "$(command -v curl)" ]; then echo "curl is installed"; else echo "curl is NOT installed"; exit 1; fi
+    get_prereq_command: |
+      which apt && apt update && apt install -y curl || which pkg && pkg update && pkg install -y curl
   executor:
     name: sh
     elevation_required: false

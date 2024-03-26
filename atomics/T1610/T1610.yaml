@@ -32,5 +32,5 @@ atomic_tests:
       docker run --name t1610_container --rm -itd t1610 bash /tmp/script.sh
     name: bash
     cleanup_command: |
-      docker stop t1610_container
+      docker stop t1610_container && docker rm t1610_container
       docker rmi -f t1610:latest 

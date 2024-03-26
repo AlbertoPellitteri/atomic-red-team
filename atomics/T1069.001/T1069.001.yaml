@@ -123,6 +123,6 @@ atomic_tests:
       docker run --name t1069_container  -d -t t1069
       docker exec t1069_container ./test.sh
     cleanup_command: |-
-      docker stop t1069_container
+      docker stop t1069_container && docker rm t1069_container
       docker rmi -f t1069
     name: sh

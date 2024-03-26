@@ -804,7 +804,7 @@ atomic_tests:
   executor:
     command: |
       history -c
-    name: sh
+    name: bash
     elevation_required: true
 - name: Suspend History
   auto_generated_guid: 94f6a1c9-aae7-46a4-9083-2bb1f5768ec4
@@ -817,7 +817,7 @@ atomic_tests:
       set +o history
     cleanup_command: |
       set -o history
-    name: sh
+    name: bash
     elevation_required: true
 - name: Reboot Linux Host via Kernel System Request
   auto_generated_guid: 6d6d3154-1a52-4d1a-9d51-92ab8148b32e

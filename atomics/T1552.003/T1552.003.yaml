@@ -31,6 +31,14 @@ atomic_tests:
     Search through sh history for specifice commands we want to capture
   supported_platforms:
   - linux
+  dependency_executor_name: sh
+  dependencies:
+  - description: |
+      Check if .history file exists
+    prereq_command: |
+      if [ -f "#{sh_history_filename}" ]; then exit 0; else exit 1; fi;
+    get_prereq_command: |
+      echo "Copying #{bash_history_filename} content into #{sh_history_filename}"; cp #{bash_history_filename} #{sh_history_filename}
   input_arguments:
     output_file:
       description: Path where captured results will be placed
@@ -44,6 +52,10 @@ atomic_tests:
       description: Path of the sh history file to capture
       type: path
       default: ~/.history
+    bash_history_filename:
+      description: Path of the bash history file to capture
+      type: path
+      default: ~/.bash_history
   executor:
     command: |
       cat #{sh_history_filename} | grep #{sh_history_grep_args} > #{output_file}

@@ -18,7 +18,7 @@ atomic_tests:
     command: |
       sudo -l      
       sudo cat /etc/sudoers
-      sudo vim /etc/sudoers
+      sudo vim /etc/sudoers &
 
 - name: Sudo usage (freebsd)
   auto_generated_guid: 2bf9a018-4664-438a-b435-cc6f8c6f71b1

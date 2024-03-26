@@ -100,10 +100,23 @@ atomic_tests:
       description: User account whose password will be changed.
       type: string
       default: ARTUser
+    user_password:
+      description: User password to set.
+      type: string
+      default: test
+  dependencies:
+    - description: |
+        Check if the user already exists
+      prereq_command: |
+        id #{user_account}
+      get_prereq_command: |
+        useradd #{user_account}
   executor:
     command: |
-      passwd #{user_account} #enter admin password > enter new password > confirm new password
-    name: sh
+      echo -e "#{user_password}\n#{user_password}" | passwd #{user_account}
+    cleanup_command: |
+      userdel #{user_account}
+    name: bash
     elevation_required: true
 - name: Delete User via dscl utility
   auto_generated_guid: 4d938c43-2fe8-4d70-a5b3-5bf239aa7846

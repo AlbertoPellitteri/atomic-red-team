@@ -25,6 +25,6 @@ atomic_tests:
       docker run --name t1612_container  -d -t t1612
       docker exec t1612_container ./test.sh
     cleanup_command: |-
-      docker stop t1612_container
+      docker stop t1612_container && docker rm t1612_container
       docker rmi -f t1612
     name: sh

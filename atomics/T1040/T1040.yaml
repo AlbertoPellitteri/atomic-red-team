@@ -9,11 +9,6 @@ atomic_tests:
     Upon successful execution, tshark or tcpdump will execute and capture 5 packets on interface ens33.
   supported_platforms:
   - linux
-  input_arguments:
-    interface:
-      description: Specify interface to perform PCAP on.
-      type: string
-      default: ens33
   dependency_executor_name: bash
   dependencies:
   - description: |
@@ -24,8 +19,9 @@ atomic_tests:
       (which yum && yum -y install epel-release tcpdump tshark)||(which apt-get && DEBIAN_FRONTEND=noninteractive apt-get install -y tcpdump tshark)
   executor:
     command: |
-      tcpdump -c 5 -nnni #{interface}
-      tshark -c 5 -i #{interface}
+      real_interface=$(ip -o link show | awk -F': ' '{print $2}' | grep ens)
+      tcpdump -c 5 -nnni ${real_interface}
+      tshark -c 5 -i ${real_interface}
     name: bash
     elevation_required: true
 - name: Packet Capture FreeBSD using tshark or tcpdump
