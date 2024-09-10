@@ -431,11 +431,11 @@ atomic_tests:
     top_level_domain:
       description: The top level domain (.com, .test, .remote, etc... following domain, minus the .)
       type: string
-      default: com
+      default: test
     user:
       description: username@domain of a user within the ad database
       type: string
-      default: user@example.com
+      default: user@example.test
     password:
       description: password of the user with admin privileges referenced in admin_user
       type: string
@@ -466,9 +466,9 @@ atomic_tests:
       type: string
       default: domain\user
     target_ip:
-      description: IP or hostname to connect to
+      description: IP to connect to
       type: string
-      default: example.com
+      default: 127.0.0.1
     password:
       description: Password to authenticate with
       type: string
